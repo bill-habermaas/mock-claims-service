@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: claims-migration-service
+  data:
+    mongodb:
+      # Overridden in docker-compose.yml to point at the "mongo" service.
+      uri: ${MONGODB_URI:mongodb://localhost:27017/claims}
+  mvc:
+    problemdetails:
+      # Error responses (400, 404) use the RFC 9457 problem+json format.
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+claims:
+  import:
+    sample-file: ${CLAIMS_SAMPLE_FILE:data/legacy_claims_export.txt}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

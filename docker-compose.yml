@@ -1,0 +1,28 @@
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"   # exposed so the app can also run from VS Code against this database
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  app:
+    build: .
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/claims
+      CLAIMS_SAMPLE_FILE: /data/legacy_claims_export.txt
+    volumes:
+      - ./data:/data:ro
+    ports:
+      - "8080:8080"
+
+volumes:
+  mongo-data:

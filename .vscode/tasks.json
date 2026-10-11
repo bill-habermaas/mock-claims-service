@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run tests",
+      "type": "shell",
+      "command": "mvn test",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker Compose: up (build)",
+      "type": "shell",
+      "command": "docker compose up --build",
+      "isBackground": false,
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker Compose: down",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start MongoDB only",
+      "type": "shell",
+      "command": "docker compose up -d --wait mongo",
+      "problemMatcher": []
+    },
+    {
+      "label": "Import sample file",
+      "type": "shell",
+      "command": "curl -s -X POST http://localhost:8080/imports/sample",
+      "problemMatcher": []
+    }
+  ]
+}

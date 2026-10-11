@@ -1,0 +1,34 @@
+# Open in VS Code with the REST Client extension and click "Send Request" above each block.
+@baseUrl = http://localhost:8080
+
+### Import the sample export (path set by CLAIMS_SAMPLE_FILE)
+POST {{baseUrl}}/imports/sample
+
+### Import an uploaded export file
+POST {{baseUrl}}/imports
+Content-Type: multipart/form-data; boundary=EXPORT
+
+--EXPORT
+Content-Disposition: form-data; name="file"; filename="legacy_claims_export.txt"
+Content-Type: text/plain
+
+< ./data/legacy_claims_export.txt
+--EXPORT--
+
+### Get one claim
+GET {{baseUrl}}/claims/CLM0000001
+
+### Unknown claim -> 404
+GET {{baseUrl}}/claims/CLM9999999
+
+### Claims by status
+GET {{baseUrl}}/claims?status=DN
+
+### Unknown status -> 400
+GET {{baseUrl}}/claims?status=XX
+
+### All claims
+GET {{baseUrl}}/claims
+
+### Health
+GET {{baseUrl}}/actuator/health

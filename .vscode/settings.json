@@ -1,0 +1,20 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.test.config": {
+    "name": "default",
+    "vmArgs": []
+  },
+  "files.trimTrailingWhitespace": true,
+  "[plaintext]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "files.associations": {
+    "*.http": "http"
+  },
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "http://localhost:8080"
+    }
+  }
+}

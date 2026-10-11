@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run service (local MongoDB)",
+      "request": "launch",
+      "mainClass": "com.example.claims.ClaimsMigrationApplication",
+      "projectName": "claims-migration-service",
+      "preLaunchTask": "Start MongoDB only",
+      "env": {
+        "MONGODB_URI": "mongodb://localhost:27017/claims",
+        "CLAIMS_SAMPLE_FILE": "${workspaceFolder}/data/legacy_claims_export.txt"
+      }
+    }
+  ]
+}
